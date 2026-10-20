@@ -1,0 +1,39 @@
+/* v2 的视角、伙伴与动作信息保持在画面边缘，给角色留下空间。 */
+.map-panel,.hotbar { backdrop-filter:none; }
+#hud { position:relative;z-index:1; }
+#peopleLabels { z-index:1; }
+#quest,.map-panel,#taskTrack,.hotbar,#abilityHud,#interaction,#raceStatus,.bottom-left,#touch { z-index:2; }
+#toast { z-index:3; }
+#taskSummary { white-space:pre-line; }
+.modal { backdrop-filter:none; background:#0a211cdb; }
+#taskTrack { position:fixed;left:36px;top:355px;width:258px;text-align:left;background:#16382cb5;padding:17px 19px;border-left:2px solid #8dbdab; }
+#taskTrack .eyebrow { display:flex;align-items:center;justify-content:space-between;font-size:10px;letter-spacing:2px;color:#bfd4b0; }
+#taskSummary { display:block;line-height:2;font-size:10px;margin:12px 0;max-width:220px; }
+.task-link { font-size:10px;opacity:.65; }
+#abilityHud { position:fixed;left:50%;transform:translateX(-50%);bottom:110px;min-width:280px;text-align:center;color:#f0ecd5;font-size:10px;pointer-events:none; }
+#abilityHud>div:first-child { display:flex;align-items:center;justify-content:center;gap:9px;text-shadow:0 2px 6px #16392c; }
+#abilityHud>div:first-child i { font-style:normal;border:1px solid #f0ecd555;padding:2px 4px;font-size:8px; }
+#actionState { opacity:.8; }
+.echo-row { display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;font-size:9px; }
+.echo-bar { width:90px;height:3px;background:#dfe6d12b;display:block; }
+.echo-bar i { display:block;background:#99d7cb;height:3px;transition:width .15s linear; }
+#dashState { font-weight:400;color:var(--gold); }
+#raceStatus { position:fixed;left:50%;top:145px;transform:translateX(-50%);padding:12px 24px;background:#263e30e6;border-top:2px solid #eac983;color:#ffe8a3;letter-spacing:2px;pointer-events:none; }
+#peopleLabels { position:fixed;inset:0;pointer-events:none; }
+.person-label { position:absolute;left:0;top:0;text-align:center;text-shadow:0 2px 4px #17382e;white-space:nowrap; }
+.person-label b { display:block;font-size:12px;letter-spacing:2px;font-weight:400;color:#fff0bc; }
+.person-label small { display:block;font-size:8px;color:#e7e6cf;margin-top:4px; }
+.dialog-copy { font-size:14px!important;line-height:2.2!important; }
+.dialog-action { display:block;text-align:left;border:1px solid #73836440;background:#e1e3ce;padding:13px 15px;width:100%;margin-top:9px;font-size:12px; }
+.dialog-action:hover { background:#d7ddbf;color:#2b4437; }
+.dialog-feedback { color:#7a653a!important;font-size:12px!important;padding:12px;background:#e4dfc2; }
+.touch-skills { display:none; }
+body.echoing .vignette { background:linear-gradient(180deg,#20374e55,transparent 25%,transparent 65%,#1b354b66),radial-gradient(ellipse,transparent 45%,#8bbfc025); }
+@media(max-width:800px) { #taskTrack { left:16px;top:310px;width:190px;padding:12px; } #taskSummary { font-size:9px;line-height:1.8;margin:7px 0; } #taskTrack .task-link { display:none; } #abilityHud { bottom:90px;font-size:9px; } .hotbar { gap:3px; } .slot { width:46px; } }
+@media(max-width:600px) { #taskTrack { top:285px;max-width:calc(100vw - 182px);background:#16382cc9; } #taskSummary { max-height:51px;overflow:hidden; } #abilityHud { bottom:90px;min-width:280px; } #actionState { display:none; } .person-label b { font-size:11px; } .person-label small { font-size:8px; } #quest { padding:12px; } #quest h3 { font-size:12px;letter-spacing:1px; } #shards { margin:8px 0; } #toast { bottom:245px; } #raceStatus { top:80px;width:80vw;font-size:10px;text-align:center;padding:8px; } }
+@media(pointer:coarse) { .touch-skills { display:flex;position:fixed;right:15px;bottom:151px;gap:6px; } #abilityHud { bottom:202px; } .bottom-left { bottom:260px; } #touch .touch-skills button { font-size:11px;width:44px;height:44px; } }
+@media(pointer:coarse) and (max-height:570px) { #taskTrack { top:158px;padding:9px 12px;width:208px; } #taskSummary { max-height:30px;line-height:1.5; } #taskTrack .eyebrow { display:none; } #abilityHud { bottom:87px;min-width:260px; } #abilityHud .echo-row { margin-top:5px; } .touch-skills { bottom:145px; } .bottom-left { bottom:22px; } #raceStatus { top:80px;width:42vw; } #interaction { top:51%; } }
+@media(max-width:600px) { #taskTrack { width:142px; } #taskTrack #taskSummary { display:none; } #taskTrack .task-link { display:block;font-size:9px;margin-top:7px; } }
+@media(pointer:coarse) and (max-height:570px) { .map-panel { top:82px;right:18px;width:106px;padding:6px; } #map { width:92px;height:92px; } .panel-label { font-size:8px;margin-bottom:6px; } .touch-skills { bottom:142px; } }
+#world{image-rendering:auto}
+.collected-flash::after{animation:none!important;box-shadow:none!important}

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#203c32"><meta name="description" content="苔光 · 方块原野。砍树采矿、照料牛羊、建造家园，也可以整备装备，前往回收区挑战。"><title>苔光 · 方块原野</title><link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./sandbox.css"><link rel="stylesheet" href="./ui-common.css"></head>
+<body class="sandbox-ui"><canvas id="world" tabindex="0" aria-label="可采集和自由搭建的三维方块世界"></canvas>
+<section id="home" aria-label="世界选择">
+  <header class="app-header"><a class="app-brand" href="./"><span class="brand-mark" aria-hidden="true">✦</span><span>苔光<small>方块原野</small></span></a><nav class="app-nav" aria-label="游戏导航"><a href="./" aria-current="page">家园与创造</a><a href="./raid.html">远征准备 ↗</a></nav><span class="header-note">一块原野，慢慢长成你的世界。</span></header>
+  <div class="home-copy"><p class="eyebrow">安顿下来，再向远方出发。</p><h1>从一块木头，<br>到<span>你的家园。</span></h1><p>砍树、采矿、盖房，和牛羊作伴。<br>也可以带上装备，去回收区探索与挑战。</p></div>
+  <div class="showcase-label">建造示例 · 原木 / 木板 / 玻璃 / 灯方块</div>
+  <div class="mode-grid" aria-label="选择游玩方式">
+    <button data-mode="survival" class="mode-card mode-primary"><span class="mode-icon" aria-hidden="true">⌂</span><small>01 / 在原野安家 <em class="recommended">推荐开始</em></small><h2>生存家园</h2><p>砍树采矿 · 制作工具 · 照料牛羊<br>从空手开始，亲手盖起第一间小屋。</p><b id="survivalLabel">进入生存世界 ↗</b></button>
+    <a href="./raid.html" class="mode-card challenge"><span class="mode-icon" aria-hidden="true">⌖</span><small>02 / 带装备去冒险</small><h2>远征挑战</h2><p>搜索补给 · 枪械战斗 · 限时撤离<br>选择委托，带着战利品返回远征营地。</p><b>前往远征准备 ↗</b></a>
+    <button data-mode="creative" class="mode-card mode-sandbox"><span class="mode-icon" aria-hidden="true">▦</span><small>03 / 放手尝试想法</small><h2>创造沙盘</h2><p>无限方块 · 自由飞行 · 无伤害<br>独立的创造世界，专心搭建心中的建筑。</p><b id="creativeLabel">进入创造世界 ↗</b></button>
+  </div>
+  <footer class="world-footer"><p class="mode-note">各玩法分别保存进度；家园、远征和创造的资源目前不互通。</p><a href="./explore.html">最初的岛屿探索 ↗</a></footer>
+</section>
+<section id="hud" hidden><div class="hud-top"><div class="world-label"><small id="modeName">自由创造</small><b>方块原野</b><span id="dayText"></span></div><div class="top-buttons"><button id="view">V 第三人称</button><button id="flight">F 飞行</button><button id="craftButton">B 方块库</button><button id="pause">Ⅱ 菜单</button></div></div><div id="vitals"><span id="health"></span><span id="food"></span></div><aside id="goals"><small>从这里开始</small><div id="goalList"></div></aside><div id="reticle">＋</div><div id="target"></div><div id="mineProgress" hidden><i></i></div><div id="selectedBlock"></div><div id="hotbar"></div><div class="controls-note" id="controlNote">鼠标自由环视 · Esc 释放 / 暂停 · WASD 移动 · 左键采集 · 右键放置 · E 喂动物 · V 视角</div><div class="touch-ui"><div id="move" class="touch-stick"><i></i></div><div id="look" class="touch-stick"><i></i></div><button id="touchMine">采集</button><button id="touchPlace">放置</button><button id="touchUse">使用</button><button id="touchJump">跳跃 / 上升</button><button id="touchDown">下降</button></div></section>
+<div id="toast" role="status"></div><div id="overlay" hidden><section class="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><button id="closePanel" aria-label="关闭">×</button><small class="eyebrow">苔光 · 方块原野 / 我的世界</small><h2 id="panelTitle"></h2><div id="panelContent"></div></section></div><div id="loading">正在生成方块原野…</div>
+<script type="module" src="./sandbox-main.js"></script></body></html>
+
+

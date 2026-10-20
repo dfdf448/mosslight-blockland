@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#203c32"><meta name="description" content="苔光 · 方块原野的远征准备。选择装备与委托，搜索回收区，在窗口关闭前完成撤离。"><title>苔光 · 方块原野 / 远征准备</title><link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./raid.css"><link rel="stylesheet" href="./ui-common.css"></head>
+<body class="raid-ui">
+<canvas id="raidCanvas" tabindex="0" aria-label="高清体素搜打撤游戏画面"></canvas><div class="vignette"></div><div id="hurtFlash"></div>
+<div id="loading">正在准备回收区…<small>搭建体素地图与战斗资源</small></div>
+<section id="camp" aria-label="回收营地">
+  <header class="camp-header app-header"><a class="app-brand" href="./"><span class="brand-mark" aria-hidden="true">✦</span><span>苔光<small>方块原野</small></span></a><nav class="app-nav" aria-label="游戏导航"><a href="./">家园与创造</a><a href="./raid.html" aria-current="page">远征准备</a></nav><div class="wallet">远征信用点 <b id="credits">90</b></div></header>
+  <div class="camp-layout">
+    <div class="camp-copy"><span class="eyebrow">远征 / 回收区</span><h1>整备好，再出发。</h1><p>选好装备与委托。搜索物资、迎战守卫，<br>在回收窗口关闭前，把战利品带回远征营地。</p><div class="deploy-form"><label>携行装备<select id="loadout"><option value="pistol">回收手枪 · 保险携行</option></select></label><label>本次委托<select id="contract"><option value="supplies">带出两枚电池 · +65</option><option value="hunter">击败五个敌人并撤离 · +85</option><option value="relic">带出遗迹晶核 · +130</option></select></label></div><span class="kit-label">携行清单</span><div id="campKit" class="kit"></div><button id="deploy" class="primary">进入回收区 <span>↗</span></button><button id="campResume" class="primary" hidden>继续未结束的行动 <span>↗</span></button><small class="insurance">保险装备失败后仍可携行；本局背包需成功撤离才会存入远征仓库。</small></div>
+    <div class="camp-services"><h2>营地整备</h2><button id="stashButton"><span class="portrait milo"><i></i></span><span><b>米洛的仓库</b><small>查看战利品 · 出售物资</small></span><em>↗</em></button><button id="forgeButton"><span class="portrait lan"><i></i></span><span><b>岚的工坊</b><small>武器图纸 · 护甲与背包升级</small></span><em>↗</em></button><button id="settingsButton"><span class="service-icon">☷</span><span><b>设置与存档</b><small>画质、镜头、声音与备份</small></span><em>↗</em></button><p class="mode-note">远征与家园分别存档，资源目前不互通。</p><a class="return-world" href="./">← 返回世界选择</a><a href="./explore.html">最初的岛屿探索 ↗</a></div>
+  </div>
+  <footer><span id="campStats"></span><span>WASD 移动 · 鼠标瞄准 · 左键开火 · E 搜索</span></footer>
+</section>
+<section id="raidHud" hidden aria-label="行动状态">
+  <div class="status-card"><div class="hero-name"><b>阿苔</b><span id="zone">南岸回收场</span></div><div class="health-row"><span>生命</span><div class="bar health"><i id="hpBar"></i></div><b id="hpText">100 / 100</b></div><div class="health-row"><span>护甲</span><div class="bar armor"><i id="armorBar"></i></div><b id="armorText">35</b></div></div>
+  <div class="raid-clock"><small id="clockLabel">回收窗口</small><strong id="raidTime">08:00</strong><span>热度 <b id="heat">0</b></span></div>
+  <div id="minimapCard"><div class="map-label">回收区 <span>■ 撤离　· 补给</span></div><canvas id="minimap" width="128" height="128" aria-label="回收区地图"></canvas><button id="pauseButton" aria-label="暂停行动">Ⅱ 暂停</button></div>
+  <div class="contract-card"><span class="eyebrow">本局委托</span><b id="contractName">带出两枚电池</b><span id="contractProgress">0 / 2</span><p>完成后成功撤离，领取额外奖励。</p></div>
+  <div id="bossHud" hidden><span>遗迹守卫</span><div><i id="bossHp"></i></div></div>
+  <div id="extraction" hidden><b id="extractText">撤离信标已亮</b><div><i id="extractBar"></i></div></div>
+  <div id="interactHint" hidden><kbd>E</kbd><span id="interactText">搜索补给箱</span><div><i id="searchBar"></i></div></div>
+  <div class="cargo-card"><small>携带价值</small><strong id="bagValue">0</strong><span>重量 <b id="weight">0 / 22</b>　·　击败 <b id="kills">0</b></span><button id="bagButton">打开背包 <kbd>Tab</kbd> ↗</button></div>
+  <button id="viewButton" aria-label="切换第一或第三人称视角" aria-pressed="false">V · 第三人称</button><div class="skills"><button id="medButton"><kbd>H</kbd><b>医疗包</b><span id="medCount">1</span></button><button id="pulseButton"><kbd>Q</kbd><b>共鸣脉冲</b><span id="pulseCooldown">就绪</span></button><button id="buildButton"><kbd>F</kbd><b>放置掩体</b><span>木材3 / 石料2</span></button><button id="reloadButton"><kbd>R</kbd><b>换弹</b><span id="rollCooldown">翻滚就绪</span></button></div>
+  <div class="weapon-card"><span id="weaponName">回收手枪</span><div><b id="ammo">18</b><span id="reserve">/ 90</span></div><small id="reloadState">R 换弹 · T 生存镐</small></div>
+  <div class="touch-controls"><div id="moveStick" class="stick" aria-label="移动摇杆"><span>移动</span><i></i></div><div id="aimStick" class="stick" aria-label="瞄准射击摇杆"><span>瞄准 / 开火</span><i></i></div><button id="touchInteract">搜索<br>采集</button><button id="touchRoll">翻滚</button></div>
+</section>
+<div id="effectsLayer"></div><div id="crosshair"><i></i></div><div id="toast" role="status" aria-live="polite"></div>
+<section id="summary" hidden><div class="summary-card"><span id="summaryEyebrow" class="eyebrow"></span><h2 id="summaryTitle"></h2><p id="summaryReason"></p><div id="summaryNumbers"></div><div id="summaryItems"></div><p id="summaryContract"></p><button id="summaryBack" class="primary">回到营地整备 <span>↗</span></button></div></section>
+<div id="panelBackdrop" hidden><section class="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><button id="panelClose" aria-label="关闭菜单">×</button><span class="eyebrow">苔光 · 方块原野 / 远征整备</span><h2 id="panelTitle"></h2><div id="panelBody"></div></section></div>
+<script type="module" src="./raid-main.js"></script><script>window.addEventListener('error',function(){if(!window.gameReady)window.raidFatal=true;if(!window.gameReady)document.getElementById('loading').innerHTML='暂时无法启动图形画面<small>请使用支持 WebGL 2 的 Chrome 或 Edge，并启用硬件加速后刷新。</small>'});setTimeout(function(){if(!window.gameReady)document.getElementById('loading').innerHTML='资源加载较慢<small>请刷新重试；也可从便携包双击“启动游戏.cmd”。</small>'},20000);</script>
+</body></html>

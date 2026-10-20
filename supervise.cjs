@@ -1,0 +1,16 @@
+// 本机服务守护：只监听回环地址，不修改游戏存档，也不终止其他程序。
+const http=require('node:http'),net=require('node:net'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),{spawn}=require('node:child_process');
+const root=__dirname,port=Number(process.env.MOSSLIGHT_PORT)||8790,instance=crypto.createHash('sha256').update(root.toLowerCase()).digest('hex').slice(0,16),folder=path.join(root,'.runtime');
+fs.mkdirSync(folder,{recursive:true});const logFile=path.join(folder,'service-'+port+'.log'),statusFile=path.join(folder,'service-'+port+'.json');
+function log(message){try{if(fs.existsSync(logFile)&&fs.statSync(logFile).size>524288)fs.renameSync(logFile,logFile+'.previous');fs.appendFileSync(logFile,new Date().toISOString()+' '+message+'\n');}catch{}}
+let child=null,childStarted=0,busy=false,stopping=false,restarts=0,reportedConflict=false;
+function status(healthy,extra={}){try{fs.writeFileSync(statusFile,JSON.stringify({supervisor:process.pid,server:child?.pid||null,port,instance,healthy,restarts,checkedAt:new Date().toISOString(),...extra},null,2));}catch{}}
+function health(){return new Promise(resolve=>{let complete=false;const done=value=>{if(complete)return;complete=true;resolve(value);},req=http.get({host:'127.0.0.1',port,path:'/__mosslight_health',timeout:1200},res=>{let data='';res.on('data',chunk=>{data+=chunk;if(data.length>4096)req.destroy();});res.on('end',()=>{try{done(JSON.parse(data));}catch{done(null);}});});req.on('timeout',()=>{req.destroy();done(null);});req.on('error',()=>done(null));});}
+function launch(){childStarted=Date.now();restarts++;const owned=spawn(process.execPath,[path.join(root,'serve.cjs')],{cwd:root,windowsHide:true,env:{...process.env,MOSSLIGHT_PORT:String(port)},stdio:['ignore','pipe','pipe']});child=owned;log('启动服务 pid='+owned.pid);owned.stdout.on('data',data=>log(String(data).trim()));owned.stderr.on('data',data=>log(String(data).trim()));owned.once('error',error=>{log('启动失败：'+error.message);if(child===owned)child=null;});owned.once('exit',(code,signal)=>{log('服务退出 code='+code+' signal='+signal);if(child===owned)child=null;});}
+async function tick(){if(busy||stopping)return;busy=true;try{const h=await health();if(h?.game==='mosslight-islands'&&h.instance===instance){reportedConflict=false;status(true,{server:h.pid,version:h.version});return;}if(h){status(false,{reason:'端口被另一个服务占用'});if(!reportedConflict){log('端口 '+port+' 被其他服务占用，保留该进程，不强行终止。');reportedConflict=true;}return;}if(child){if(Date.now()-childStarted>15000){log('自有服务无响应，终止后重新拉起 pid='+child.pid);child.kill();}status(false,{reason:'等待自有服务就绪'});return;}launch();status(false,{reason:'正在启动'});}finally{busy=false;}}
+const pipe=process.platform==='win32'?'\\\\.\\pipe\\mosslight-'+instance+'-'+port:path.join(folder,'mosslight-'+port+'.sock');
+const singleton=net.createServer(socket=>socket.end('mosslight-supervisor'));
+singleton.on('error',error=>{if(error.code==='EADDRINUSE'){log('已有守护进程，跳过重复启动。');process.exit(0);}log('守护锁失败：'+error.message);process.exit(1);});
+singleton.listen(pipe,()=>{log('守护启动 pid='+process.pid);tick();setInterval(tick,2000);});
+function stop(){stopping=true;if(child)child.kill();singleton.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1500).unref();}
+process.on('SIGTERM',stop);process.on('SIGINT',stop);

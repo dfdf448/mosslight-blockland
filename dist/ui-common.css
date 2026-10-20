@@ -1,0 +1,185 @@
+/* 家园与远征共用界面：墨绿面板、米白正文、金色操作。 */
+:root{--paper:#f4f0dc;--muted:#c8d4bd;--gold:#eed08f;--ink:#243d32;--line:#d8e3bf40;--ui-surface:#203e33ed;--ui-border:#d8e3bf48}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif}
+button,a,select{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.app-header{display:flex;align-items:center;gap:28px;min-height:54px}
+.app-header .app-brand{display:flex;flex-shrink:0;align-items:center;gap:12px;font-size:25px;font-weight:600;line-height:1.2;letter-spacing:3px;color:var(--paper);text-decoration:none}
+.app-brand .brand-mark{font-size:27px;color:var(--gold)}
+.app-header .app-brand small{display:block;margin:6px 0 0;font-size:11px;font-weight:400;letter-spacing:3px;color:var(--muted)}
+.app-nav{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-left:22px}
+.app-header .app-nav a{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 16px;border:1px solid transparent;font-size:12px;font-weight:400;letter-spacing:1px;text-decoration:none;color:var(--muted)}
+.app-header .app-nav a[aria-current="page"]{border-color:var(--ui-border);background:#e9e6ce0d;color:var(--gold)}
+.app-header .app-nav a:hover{color:var(--paper);background:#e9e6ce14}
+.app-header .header-note{margin-left:auto;font-size:12px;color:var(--muted);letter-spacing:1px}
+.mode-note{font-size:12px;line-height:1.9;color:var(--muted);margin:0}
+.eyebrow{font-size:11px;letter-spacing:2px}
+
+/* 世界选择：家园为主入口，远征与沙盘保持清楚的玩法边界。 */
+.sandbox-ui #home{display:flex;flex-direction:column;padding:25px 6% 24px;background:linear-gradient(90deg,#122e29ed,#193b3180 61%,#19382f26)}
+.sandbox-ui .home-copy{margin-top:clamp(34px,5vh,65px);max-width:570px}
+.sandbox-ui .home-copy .eyebrow{color:var(--gold)}
+.sandbox-ui .home-copy h1{margin:17px 0 18px;font-size:clamp(42px,4.3vw,62px);line-height:1.35;letter-spacing:5px}
+.sandbox-ui .home-copy>p:last-child{margin:0;font-size:13px;line-height:2;color:#edf0d7d9}
+.sandbox-ui .showcase-label{top:26%;right:8%;font-size:11px;padding:10px 13px}
+.sandbox-ui .mode-grid{position:static;display:grid;grid-template-columns:1.18fr 1fr .92fr;gap:14px;width:100%;max-width:none;margin-top:auto;padding-top:32px}
+.sandbox-ui .mode-card{min-width:0;border-color:var(--ui-border);border-radius:3px;padding:21px 23px;background:#244638e8;box-shadow:none}
+.sandbox-ui .mode-card:hover{background:#355943f5;transform:translateY(-3px)}
+.sandbox-ui .mode-primary{background:#385442ed;border-color:#e8d29894;border-top:3px solid var(--gold);padding-top:19px}
+.sandbox-ui .mode-sandbox{background:#223d32dc}
+.sandbox-ui .mode-card small{font:10px "Microsoft YaHei",sans-serif;letter-spacing:1px;min-height:20px;line-height:1.8}
+.sandbox-ui .recommended{display:inline-block;margin-left:8px;padding:1px 6px;background:#eed08f22;font-size:10px;font-style:normal;color:var(--gold);letter-spacing:0}
+.sandbox-ui .mode-icon{font-size:27px;margin:0 0 6px 12px}
+.sandbox-ui .mode-card h2{font-size:23px;line-height:1.35;letter-spacing:2px;margin:14px 0 11px}
+.sandbox-ui .mode-card p{font-size:12px;line-height:1.9;margin:0;color:#d1dcc5}
+.sandbox-ui .mode-card b{font-size:12px;letter-spacing:1px;margin-top:19px;padding-top:14px;border-color:var(--ui-border)}
+.sandbox-ui #home>.world-footer{position:static;display:flex;align-items:center;justify-content:space-between;gap:22px;width:100%;max-width:none;margin-top:17px;font-size:11px}
+.world-footer>a{flex-shrink:0;font-size:11px;color:var(--gold);text-decoration:none;padding:8px 0}
+
+/* 远征准备：先选装备与委托，再管理仓库。 */
+.raid-ui #camp{padding:25px 6% 24px;overflow-y:auto;background:linear-gradient(90deg,#122e29f0,#193b31c7 55%,#19382f45)}
+.raid-ui .camp-header{position:static;gap:22px}
+.raid-ui .wallet{min-width:125px;margin-left:auto;text-align:right;font-size:12px;line-height:1.6}
+.raid-ui .wallet b{display:inline-block;font-size:22px;margin-left:10px}
+.raid-ui .camp-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.8fr);gap:clamp(30px,6vw,95px);max-width:1140px;margin:clamp(32px,6vh,70px) auto 25px;align-items:start}
+.raid-ui .camp-copy{position:static;max-width:none;min-width:0;padding:26px 30px 28px;background:#203e33eb;border:1px solid var(--ui-border);border-top:3px solid var(--gold)}
+.raid-ui .camp-copy h1{font-size:32px;line-height:1.4;letter-spacing:3px;margin:12px 0 10px}
+.raid-ui .camp-copy>p{display:block;margin:0 0 25px;font-size:12px;letter-spacing:0;line-height:1.9;color:var(--muted)}
+.raid-ui .deploy-form{gap:14px}
+.raid-ui .deploy-form label{gap:9px;min-width:0;color:var(--paper);font-size:12px}
+.raid-ui .deploy-form select{width:100%;max-width:none;min-height:46px;padding:11px 10px;font-size:12px;color:var(--paper);background:#18352c;border-color:var(--ui-border)}
+.raid-ui .kit-label{display:block;margin-top:24px;font-size:11px;letter-spacing:2px;color:var(--gold)}
+.raid-ui .kit{padding:12px 0 18px;margin:0 0 18px;border-bottom:1px solid var(--ui-border);font:12px/2 "Microsoft YaHei",sans-serif;color:var(--muted)}
+.raid-ui .primary{width:100%;min-height:48px;min-width:0;padding:14px 18px;font-size:13px;border:1px solid #f6e0ab66;border-radius:3px;box-shadow:none}
+.raid-ui .insurance{display:block;font-size:11px;line-height:1.9;color:var(--muted);margin-top:14px;max-width:none}
+.raid-ui .camp-services{position:static;display:flex;flex-direction:column;width:auto;gap:11px;min-width:0;padding-top:5px}
+.raid-ui .camp-services>h2{font-size:15px;font-weight:400;line-height:1.6;letter-spacing:2px;margin:0 0 6px;color:var(--paper)}
+.raid-ui .camp-services>button{background:var(--ui-surface);border:1px solid var(--ui-border);border-radius:3px;padding:18px;min-height:84px;gap:16px}
+.raid-ui .camp-services>button:hover{background:#355943f5}
+.raid-ui .camp-services>button b{font-size:15px;letter-spacing:1px}
+.raid-ui .camp-services>button small{font-size:11px;line-height:1.7;margin-top:6px;color:var(--muted)}
+.raid-ui .camp-services>a{font-size:12px;text-align:left;line-height:1.8;margin:2px 0 0;padding:7px 0;color:var(--muted)}
+.raid-ui .camp-services .return-world{padding:12px 16px;color:var(--gold);border:1px solid var(--ui-border);text-align:center;border-radius:3px}
+.raid-ui .camp-services .mode-note{font-size:11px}
+.raid-ui #camp>footer{position:static;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 auto;max-width:1140px;font-size:11px;line-height:1.8;letter-spacing:0}
+.raid-ui #camp>footer>span:last-child{display:inline}
+
+/* 菜单与弹窗共享密度，保留既有交互和存档逻辑。 */
+.panel,.summary-card{background:#f1efde;color:var(--ink);border:1px solid #e8d6a9;border-radius:4px;padding:30px;box-shadow:0 10px 30px #102a2340}
+.panel h2,.summary-card h2{font:400 27px/1.5 "Microsoft YaHei",sans-serif;letter-spacing:2px;margin:13px 0 18px}
+.panel p,.summary-card p{font-size:13px;line-height:1.9;color:#56694f;opacity:1}
+.panel .eyebrow,.summary-card .eyebrow{font-size:11px;color:#7e713f;letter-spacing:1px}
+.panel .menu-button,.panel .palette button,.panel .recipe,.raid-ui .panel button:not(.primary):not(#panelClose),.inventory-grid article,.forge-grid article{border-radius:3px}
+.panel .menu-button,.raid-ui .panel button:not(.primary):not(#panelClose){font-size:12px;line-height:1.6;min-height:44px}
+.panel .palette button,.panel .recipe b{font-size:12px}
+.panel .recipe p,.panel .inventory-grid article>span,.panel .forge-grid p{font-size:11px;line-height:1.9}
+.panel #closePanel,.panel #panelClose{width:44px;height:44px;right:8px;top:7px;padding:0;background:transparent;font-size:27px;text-align:center}
+.top-buttons button,.raid-ui #viewButton,.raid-ui #pauseButton{background:var(--ui-surface);border:1px solid var(--ui-border);border-radius:3px;font-size:12px;min-height:44px}
+.sandbox-ui .world-label,.raid-ui .status-card{background:var(--ui-surface);border:1px solid var(--ui-border);border-left:2px solid var(--gold)}
+.sandbox-ui #goalList{font-size:11px;line-height:2.2}
+.sandbox-ui #goals{width:230px}
+.sandbox-ui #target,.sandbox-ui #selectedBlock,.raid-ui #interactHint{font-size:12px}
+.sandbox-ui .controls-note{font-size:11px}
+.sandbox-ui #hotbar small{font-size:10px}
+.sandbox-ui #hotbar button{width:60px;height:65px}
+.sandbox-ui #selectedBlock{bottom:128px}
+.raid-ui #viewButton{top:252px;right:25px;min-height:44px;font-size:11px}
+.raid-ui .hero-name span,.raid-ui .health-row,.raid-ui .contract-card>p,.raid-ui .cargo-card>span,.raid-ui .weapon-card>small{font-size:10px}
+.raid-ui .contract-card>b,.raid-ui .skills b{font-size:12px}
+.raid-ui .skills span{font-size:10px}
+.raid-ui .skills button{width:84px;height:66px;border-radius:3px}
+
+@media(min-width:701px) and (max-height:780px){
+  .sandbox-ui #home{padding-top:18px;padding-bottom:16px}
+  .sandbox-ui .home-copy{margin-top:24px}
+  .sandbox-ui .home-copy h1{font-size:44px;margin:12px 0}
+  .sandbox-ui .mode-grid{padding-top:24px}
+  .sandbox-ui .mode-card{padding:17px 20px}
+  .sandbox-ui .mode-primary{padding-top:15px}
+  .sandbox-ui .mode-card h2{margin:10px 0;font-size:21px}
+  .sandbox-ui .mode-card b{margin-top:13px;padding-top:12px}
+  .raid-ui .camp-layout{margin-top:24px}
+}
+@media(max-width:1000px){
+  .app-header .header-note{display:none}
+  .app-nav{margin-left:0}
+  .sandbox-ui .mode-grid{grid-template-columns:1.1fr 1fr 1fr;gap:10px}
+  .sandbox-ui .mode-card{padding-left:16px;padding-right:16px}
+  .sandbox-ui .mode-icon{display:none}
+  .sandbox-ui .recommended{margin-left:0}
+  .raid-ui .camp-layout{grid-template-columns:minmax(0,1.35fr) minmax(240px,.9fr);gap:24px}
+  .raid-ui .camp-copy{padding:23px}
+  .raid-ui .deploy-form{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .sandbox-ui #home,.raid-ui #camp{padding:20px 5% 24px}
+  .app-header{flex-wrap:wrap;gap:17px;align-items:center}
+  .app-header .app-brand{gap:9px;font-size:23px}
+  .app-header .app-brand small{display:block;font-size:10px;letter-spacing:2px}
+  .app-nav{gap:2px;margin-left:auto}
+  .app-header .app-nav a{min-height:44px;padding:9px 10px;font-size:11px;letter-spacing:0;gap:4px}
+  .sandbox-ui .home-copy{margin-top:34px;max-width:100%}
+  .sandbox-ui .home-copy h1{font-size:39px;letter-spacing:3px;margin:13px 0}
+  .sandbox-ui .home-copy>p:last-child{font-size:12px;line-height:1.9}
+  .sandbox-ui .showcase-label{display:none}
+  .sandbox-ui .mode-grid{grid-template-columns:1fr;margin-top:0;padding-top:27px;gap:12px}
+  .sandbox-ui .mode-card{padding:18px 20px}
+  .sandbox-ui .mode-primary{padding-top:16px}
+  .sandbox-ui .mode-icon{display:block;font-size:28px}
+  .sandbox-ui .mode-card h2{font-size:23px;margin:11px 0 9px}
+  .sandbox-ui .mode-card p{font-size:12px}
+  .sandbox-ui .mode-card b{margin-top:13px;padding-top:12px;font-size:12px}
+  .sandbox-ui .recommended{margin-left:8px}
+  .sandbox-ui #home>.world-footer{display:block;margin-top:18px}
+  .world-footer>a{display:inline-block;margin-top:8px}
+  .raid-ui .camp-header{gap:12px}
+  .raid-ui .camp-header .app-brand{flex:1}
+  .raid-ui .camp-header .app-nav{flex-basis:100%;order:3;margin:0}
+  .raid-ui .wallet{min-width:90px;font-size:11px}
+  .raid-ui .wallet b{font-size:20px;margin-left:6px}
+  .raid-ui .camp-layout{grid-template-columns:1fr;margin:24px 0 20px;gap:25px}
+  .raid-ui .camp-copy{padding:22px 20px}
+  .raid-ui .camp-copy h1{font-size:29px;margin:10px 0}
+  .raid-ui .camp-copy>p{font-size:12px;margin-bottom:20px}
+  .raid-ui .deploy-form{grid-template-columns:1fr;gap:15px}
+  .raid-ui .deploy-form select{font-size:12px;max-width:100%}
+  .raid-ui .kit-label{margin-top:21px}
+  .raid-ui .kit{font-size:12px;line-height:1.9}
+  .raid-ui .insurance{display:block;font-size:11px}
+  .raid-ui .camp-services{display:flex;gap:10px;padding-top:0}
+  .raid-ui .camp-services>button{min-height:80px;padding:15px 17px;gap:15px}
+  .raid-ui .camp-services>button b{font-size:14px}
+  .raid-ui .camp-services>button small{font-size:11px;line-height:1.7}
+  .raid-ui .camp-services>button em{display:block}
+  .raid-ui .camp-services>button .portrait{width:30px;height:37px}
+  .raid-ui #camp>footer{flex-direction:column;align-items:flex-start;font-size:10px;gap:7px}
+  .raid-ui #camp>footer>span:last-child{display:none}
+  .panel,.summary-card{padding:24px 20px;max-height:88vh}
+  .panel h2,.summary-card h2{font-size:23px;margin-right:17px}
+  .panel p,.summary-card p{font-size:12px}
+  .sandbox-ui #hotbar{gap:2px;padding:4px;max-width:calc(100vw - 12px)}
+  .sandbox-ui #hotbar button{width:37px;height:56px;min-width:0}
+  .sandbox-ui #hotbar small{font-size:9px}
+  .sandbox-ui #hotbar strong{font-size:10px;bottom:19px}
+  .sandbox-ui #selectedBlock{bottom:103px}
+  .sandbox-ui .top-buttons{max-width:190px}
+  .sandbox-ui .top-buttons button{min-height:40px;font-size:10px;padding:9px}
+  .sandbox-ui #goals{width:174px}
+  .sandbox-ui #goalList{font-size:10px}
+  .sandbox-ui .controls-note{font-size:9px;padding:0 9px}
+  .raid-ui .skills button{width:73px;height:54px}
+  .raid-ui .skills b{font-size:10px}
+  .raid-ui .skills span{font-size:9px}
+  .raid-ui .hero-name span,.raid-ui .health-row,.raid-ui .cargo-card>span,.raid-ui .weapon-card>small{font-size:9px}
+  .raid-ui .contract-card>b{font-size:10px}
+  .raid-ui #viewButton{top:148px;right:12px;padding:8px 11px;width:108px}
+}
+@media(pointer:coarse){
+  .raid-ui #viewButton{top:64px;right:127px;width:92px;min-height:44px;font-size:10px;padding:7px}
+  .raid-ui #pauseButton{min-height:44px;font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .sandbox-ui .mode-card{transition:none}
+  .sandbox-ui .mode-card:hover{transform:none}
+}
+@media(pointer:coarse) and (max-width:700px){.raid-ui #viewButton{top:148px;right:12px;width:108px}}

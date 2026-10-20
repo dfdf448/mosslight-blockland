@@ -1,0 +1,33 @@
+/* 纸张、暖金与苔绿贯穿游戏、设置和纪念照。 */
+button { transition: color .15s, background .15s, transform .15s; }
+#world:focus { outline: none; }
+#interaction,#crosshair,#toast,#compass,.bottom-left,.bottom-right { pointer-events:none; }
+header button { min-width:44px; min-height:44px; }
+.slot { color:var(--paper); padding:0; }
+.slot .slot-label { font-size:9px; opacity:.8; color:var(--paper); }
+.modal-card .menu-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:22px; }
+.menu-grid button { padding:12px 6px; background:#dfe1cb; border:1px solid #36524525; font-size:12px; min-height:44px; }
+.menu-grid button:hover { background:#d5d9bc; color:#243c30; }
+.modal-card button:focus-visible,.modal-card input:focus-visible,.modal-card select:focus-visible { outline:2px solid #7b643b; outline-offset:3px; }
+.modal-card .primary { min-width:0; }
+.modal-card .close { min-width:44px; min-height:44px; right:8px; top:4px; }
+.setting-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; min-height:55px; border-bottom:1px solid #34523d20; font-size:12px; }
+.setting-row input[type=range] { width:44%; accent-color:#6b8053; }
+.setting-row input[type=checkbox] { accent-color:#6b8053; width:20px; height:20px; }
+.setting-row output { width:38px; font-family:monospace; text-align:right; }
+.setting-row select { font:inherit; border:1px solid #b8b99b; background:#f4f0df; color:#2b4437; padding:7px; }
+#photoPreview { width:100%; display:block; box-shadow:3px 4px 0 #38513b25; }
+#interaction { max-width:90vw; white-space:normal; line-height:1.8; z-index:2; }
+#interaction kbd { white-space:nowrap; }
+#quest p { font-size:11px; }
+.collected-flash::after { content:''; position:fixed; inset:0; pointer-events:none; animation:light-return 1.2s ease-out forwards; }
+@keyframes light-return { from { box-shadow:inset 0 0 120px #ffe9a688; } to { box-shadow:inset 0 0 0 transparent; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+@media(max-width:800px) { .modal-card { padding:30px 25px; } .modal-card h2 { font-size:27px; } #quest p { font-size:10px; } #intro p { max-width:85vw; } }
+@media(max-width:600px) { #toast { top:auto; bottom:230px; width:90vw; max-width:90vw; font-size:11px; padding:10px 15px; } #quest { background:#16382cc7; } #quest h3 { margin-top:10px; } #shards { margin:9px 0; font-size:20px; } #journalBtn { padding-top:9px; } }
+@media(max-height:570px) and (min-width:600px) { #intro { top:22%; } h1 { font-size:40px; margin:10px 0; line-height:1.1; } #intro p { margin:10px 0; line-height:1.7; font-size:11px; } .intro-controls { display:none; } .intro-meta { margin-top:15px; } footer { bottom:14px; } #postcard h2 { font-size:18px; } .map-panel { top:85px; width:142px; padding:9px; } #map { width:122px; height:122px; } .panel-label span { display:none; } #quest { top:90px; width:202px; padding:13px; } #quest p { font-size:10px; } #quest h3 { margin:9px 0; font-size:13px; } #shards { margin:6px 0; font-size:20px; } .bottom-left { bottom:25px; } #compass { top:80px; } .hotbar { bottom:15px; } #touch { bottom:70px; } .bottom-right { display:none; } .modal-card { max-height:92vh; padding:25px; } }
+@media(max-width:600px) and (max-height:720px) { #intro { top:21%; } h1 { font-size:48px; } #intro p { line-height:1.8; font-size:11px; margin-bottom:18px; } .intro-meta { margin-top:18px; } .intro-controls { margin-top:20px; } }
+@media(pointer:coarse) { #touch button { user-select:none; -webkit-user-select:none; width:48px; height:48px; } #touch .dpad { grid-template-columns:repeat(3,48px); } #touch { bottom:90px; } .bottom-left { bottom:220px; } }
+@media(max-width:600px) { #quest { max-width:calc(100vw - 182px); } .brand small { font-size:6px; letter-spacing:1px; white-space:nowrap; } }
+@media(max-width:400px) { header { left:16px; right:16px; } .brand { font-size:16px; letter-spacing:2px; gap:8px; } .brand-icon { width:30px; height:34px; font-size:25px; } }
+@media(pointer:coarse) and (max-height:570px) { .bottom-left { bottom:22px; left:20px; } #region { font-size:12px; margin-bottom:5px; } .stamina { margin-top:7px; } #quest { top:90px; width:208px; padding:12px; } #quest p,#shards,#journalBtn { display:none; } #quest h3 { margin-bottom:0; } .map-panel { width:122px; } #map { width:104px; height:104px; } .map-legend { display:none; } #toast { top:auto; bottom:86px; max-width:50vw; font-size:10px; padding:10px 15px; } #interaction { top:55%; max-width:53vw; } }

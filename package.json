@@ -1,0 +1,18 @@
+{
+  "name": "mosslight-islands",
+  "version": "4.2.0",
+  "private": true,
+  "type": "module",
+  "description": "苔光：方块原野，自由创造、生存建造与枪战挑战",
+  "scripts": {
+    "start": "node serve.cjs",
+    "test": "node check-sandbox-core.cjs && node check-v41-animals.cjs && node check-raid-core.cjs",
+    "test:browser": "node check-v41-browser.cjs && node check-v41-feeding.cjs && node check-ui-v42.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
